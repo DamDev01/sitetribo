@@ -149,8 +149,10 @@ textarea {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(7, 7, 7, 0.88) 0%, rgba(7, 7, 7, 0.56) 38%, rgba(7, 7, 7, 0.08) 100%),
-    url("banner.png") center top / contain no-repeat,
+    radial-gradient(circle at 74% 48%, rgba(255, 106, 33, 0.22), transparent 20%),
+    linear-gradient(90deg, rgba(7, 7, 7, 0.96) 0%, rgba(7, 7, 7, 0.78) 42%, rgba(7, 7, 7, 0.58) 68%, rgba(7, 7, 7, 0.92) 100%),
+    linear-gradient(180deg, rgba(7, 7, 7, 0.22), rgba(7, 7, 7, 0.88)),
+    url("image.webp") 78% center / cover no-repeat,
     radial-gradient(circle at 90% 18%, rgba(255, 106, 33, 0.32), transparent 24%),
     linear-gradient(135deg, #050505 0%, #17110d 48%, #050505 100%);
   background-color: var(--black);
@@ -298,12 +300,12 @@ h3 {
 }
 
 .hero-card {
-  max-width: 720px;
+  max-width: 920px;
   margin-top: 76px;
   margin-right: auto;
   margin-left: auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
+  grid-template-columns: 150px minmax(0, 1fr) minmax(220px, 0.72fr);
   gap: 24px;
   align-items: center;
   padding: 26px;
@@ -312,6 +314,24 @@ h3 {
   background: rgba(7, 7, 7, 0.46);
   backdrop-filter: blur(16px);
   box-shadow: var(--shadow);
+}
+
+.hero-profile-image {
+  height: 150px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-profile-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 10% 42%;
+  transform: scale(2.25);
 }
 
 .hero-card span {
@@ -370,9 +390,15 @@ h3 {
 
 .intro-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(320px, 1fr);
-  gap: 42px;
+  gap: 30px;
   align-items: start;
+}
+
+.intro-story {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+  gap: 42px;
+  align-items: stretch;
 }
 
 .intro-copy {
@@ -383,6 +409,24 @@ h3 {
 
 .intro-copy p:first-child {
   margin-top: 0;
+}
+
+.intro-media {
+  position: relative;
+  min-height: 320px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 18px 60px rgba(7, 7, 7, 0.08);
+}
+
+.intro-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .principles,
@@ -410,7 +454,27 @@ h3 {
 .floating-card {
   min-height: 260px;
   padding: 22px;
+  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-card::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 92px;
+  margin-top: 20px;
+  border-radius: var(--radius);
+  background: url("image (3).webp") center / cover no-repeat;
+  opacity: 0.72;
+}
+
+.floating-card:nth-child(2)::after {
+  background-image: url("image (2).webp");
+}
+
+.floating-card:nth-child(3)::after {
+  background-image: url("tumisu-mental-health-2313430.jpg");
 }
 
 .floating-card:nth-child(2) {
@@ -455,8 +519,75 @@ h3 {
 .floating-card p,
 .service-card p,
 .ebook-card p,
-.post p {
+.post p,
+.profile-list p {
   color: var(--muted);
+}
+
+.profile {
+  padding-top: 28px;
+}
+
+.profile-panel {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1fr);
+  gap: 42px;
+  align-items: stretch;
+  padding: clamp(24px, 5vw, 52px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.76)),
+    radial-gradient(circle at 12% 10%, rgba(255, 106, 33, 0.2), transparent 30%);
+  box-shadow: var(--shadow);
+}
+
+.profile-media {
+  min-height: 520px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--black);
+}
+
+.profile-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 13% center;
+}
+
+.profile-copy h2 {
+  font-size: clamp(2.1rem, 4vw, 3.65rem);
+}
+
+.profile-lead {
+  color: var(--muted);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.profile-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.profile-list article {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.profile-list h3 {
+  font-size: 1rem;
+}
+
+.profile-list p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
 }
 
 .work {
@@ -476,7 +607,7 @@ h3 {
 }
 
 .service-card {
-  min-height: 310px;
+  min-height: 360px;
   padding: 28px;
   color: var(--white);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
@@ -514,6 +645,7 @@ h3 {
 }
 
 .mentorship-panel {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
   gap: 42px;
@@ -525,6 +657,24 @@ h3 {
     linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.74)),
     linear-gradient(135deg, rgba(255, 106, 33, 0.14), rgba(255, 154, 61, 0));
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.mentorship-panel::before {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 0;
+  width: min(270px, 30vw);
+  aspect-ratio: 1;
+  background: url("image (1).webp") left bottom / contain no-repeat;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.mentorship-copy,
+.mentorship-card-stack {
+  position: relative;
+  z-index: 1;
 }
 
 .mentorship-copy p:not(.eyebrow) {
@@ -534,7 +684,7 @@ h3 {
 }
 
 .mentorship-copy h2 {
-  font-size: clamp(2.15rem, 4.6vw, 4.25rem);
+  font-size: clamp(2rem, 3.8vw, 3.55rem);
   line-height: 1;
 }
 
@@ -664,10 +814,11 @@ h3 {
 
 .blog-hero {
   position: relative;
-  min-height: 62vh;
+  min-height: 68vh;
   display: grid;
   align-items: end;
-  padding: 140px max(20px, calc((100% - 1120px) / 2)) 80px;
+  justify-items: end;
+  padding: 180px max(20px, calc((100% - 1120px) / 2)) 56px;
   overflow: hidden;
   color: var(--white);
   background: var(--black);
@@ -677,8 +828,10 @@ h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(7, 7, 7, 0.88) 0%, rgba(7, 7, 7, 0.56) 48%, rgba(7, 7, 7, 0.22) 100%),
-    url("banner.png") center top / contain no-repeat,
+    radial-gradient(ellipse at 24% 42%, rgba(7, 7, 7, 0.04) 0%, rgba(7, 7, 7, 0.08) 26%, rgba(7, 7, 7, 0.72) 62%, rgba(7, 7, 7, 0.96) 100%),
+    linear-gradient(90deg, rgba(7, 7, 7, 0.08) 0%, rgba(7, 7, 7, 0.22) 34%, rgba(7, 7, 7, 0.82) 72%, rgba(7, 7, 7, 0.96) 100%),
+    linear-gradient(180deg, rgba(7, 7, 7, 0.08) 0%, rgba(7, 7, 7, 0.48) 100%),
+    url("banner.png") left top / auto 100% no-repeat,
     radial-gradient(circle at 88% 20%, rgba(255, 106, 33, 0.28), transparent 24%),
     linear-gradient(135deg, #050505 0%, #17110d 48%, #050505 100%);
   background-color: var(--black);
@@ -720,13 +873,21 @@ h3 {
 .blog-hero-content {
   position: relative;
   z-index: 1;
-  max-width: 860px;
+  max-width: 390px;
+  margin-top: 260px;
+  text-align: right;
+}
+
+.blog-hero-content h1 {
+  font-size: clamp(1.8rem, 3.1vw, 3rem);
+  line-height: 1.05;
 }
 
 .blog-hero-content p:not(.eyebrow) {
-  max-width: 680px;
+  max-width: 360px;
+  margin-left: auto;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .blog-page {
@@ -996,8 +1157,10 @@ h3 {
 
   .hero-bg {
     background:
-      linear-gradient(180deg, rgba(7, 7, 7, 0.78) 0%, rgba(7, 7, 7, 0.58) 58%, rgba(7, 7, 7, 0.3) 100%),
-      url("banner.png") center top / contain no-repeat,
+      radial-gradient(circle at 58% 30%, rgba(255, 106, 33, 0.2), transparent 22%),
+      linear-gradient(180deg, rgba(7, 7, 7, 0.86) 0%, rgba(7, 7, 7, 0.62) 44%, rgba(7, 7, 7, 0.88) 100%),
+      linear-gradient(90deg, rgba(7, 7, 7, 0.9), rgba(7, 7, 7, 0.35), rgba(7, 7, 7, 0.86)),
+      url("image.webp") center 24% / cover no-repeat,
       radial-gradient(circle at 86% 18%, rgba(255, 106, 33, 0.24), transparent 26%),
       linear-gradient(135deg, #050505 0%, #17110d 48%, #050505 100%);
     background-color: var(--black);
@@ -1014,7 +1177,18 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .hero-profile-image {
+    height: 220px;
+  }
+
+  .hero-profile-image img {
+    object-position: 8% 42%;
+    transform: scale(1.7);
+  }
+
   .intro-grid,
+  .intro-story,
+  .profile-panel,
   .blog-page-grid,
   .contact-panel {
     grid-template-columns: 1fr;
@@ -1022,6 +1196,15 @@ h3 {
 
   .blog-sidebar {
     position: static;
+  }
+
+  .blog-hero-content {
+    max-width: min(360px, 56vw);
+    margin-top: 210px;
+  }
+
+  .blog-hero-content h1 {
+    font-size: clamp(1.65rem, 4.8vw, 2.55rem);
   }
 
   .principles,
@@ -1043,6 +1226,10 @@ h3 {
   .floating-card:nth-child(3):hover {
     min-height: auto;
     transform: none;
+  }
+
+  .profile-media {
+    min-height: 340px;
   }
 }
 
@@ -1100,8 +1287,32 @@ h3 {
   }
 
   .blog-hero {
-    min-height: 58vh;
-    padding-top: 116px;
+    min-height: 66vh;
+    padding-top: 150px;
+    padding-bottom: 42px;
+  }
+
+  .blog-hero-bg {
+    background:
+      radial-gradient(ellipse at 18% 36%, rgba(7, 7, 7, 0.04) 0%, rgba(7, 7, 7, 0.18) 34%, rgba(7, 7, 7, 0.88) 86%),
+      linear-gradient(90deg, rgba(7, 7, 7, 0.18) 0%, rgba(7, 7, 7, 0.54) 54%, rgba(7, 7, 7, 0.94) 100%),
+      linear-gradient(180deg, rgba(7, 7, 7, 0.06) 0%, rgba(7, 7, 7, 0.55) 100%),
+      url("banner.png") 26% top / auto 100% no-repeat,
+      radial-gradient(circle at 88% 20%, rgba(255, 106, 33, 0.28), transparent 24%),
+      linear-gradient(135deg, #050505 0%, #17110d 48%, #050505 100%);
+  }
+
+  .blog-hero-content {
+    max-width: 48vw;
+    margin-top: 180px;
+  }
+
+  .blog-hero-content h1 {
+    font-size: clamp(1.25rem, 6.5vw, 1.9rem);
+  }
+
+  .blog-hero-content p:not(.eyebrow) {
+    font-size: 0.88rem;
   }
 
   .contact-panel {
