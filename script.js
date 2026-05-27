@@ -5,7 +5,7 @@ const form = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 
 const contactEmail = "contato@triboneurodiversa.com.br";
-const contactEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
+const contactEndpoint = "https://formsubmit.co/ajax/06b59af39c87f35b5120835a3b896e07";
 
 function updateHeader() {
   if (!header) return;
