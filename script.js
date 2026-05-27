@@ -5,6 +5,7 @@ const form = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 
 const contactEmail = "contato@triboneurodiversa.com.br";
+const contactEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
 
 function updateHeader() {
   if (!header) return;
@@ -43,7 +44,7 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
 if (form) {
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const data = new FormData(form);
@@ -51,16 +52,56 @@ if (form) {
     const email = data.get("email").trim();
     const assunto = data.get("assunto");
     const mensagem = data.get("mensagem").trim();
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    const subject = encodeURIComponent(`[Site TRIBO] ${assunto} - ${nome}`);
-    const body = encodeURIComponent(
-      `Nome: ${nome}\nE-mail: ${email}\nAssunto: ${assunto}\n\nMensagem:\n${mensagem}`
-    );
+    const payload = {
+      nome,
+      email,
+      assunto,
+      mensagem,
+      _subject: `[Site TRIBO] ${assunto} - ${nome}`,
+      _template: "table",
+      _captcha: "false",
+    };
 
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Enviando...";
+    }
 
     if (formNote) {
-      formNote.textContent = "Seu aplicativo de e-mail foi aberto com a mensagem preenchida.";
+      formNote.textContent = "Enviando sua mensagem...";
+    }
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao enviar mensagem.");
+      }
+
+      form.reset();
+
+      if (formNote) {
+        formNote.textContent = "Mensagem enviada. Obrigado pelo contato.";
+      }
+    } catch (error) {
+      if (formNote) {
+        formNote.textContent =
+          "Nao foi possivel enviar agora. Tente novamente ou escreva para contato@triboneurodiversa.com.br.";
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar mensagem";
+      }
     }
   });
 }
