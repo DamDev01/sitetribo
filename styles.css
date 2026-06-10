@@ -603,7 +603,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 13% center;
+  object-position: 18% center;
 }
 
 .profile-copy h2 {
@@ -655,6 +655,7 @@ h3 {
 }
 
 .service-card {
+  position: relative;
   min-height: 360px;
   padding: 28px;
   color: var(--white);
@@ -664,6 +665,15 @@ h3 {
 
 .service-card p {
   color: rgba(255, 255, 255, 0.68);
+}
+
+.service-card .card-link {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  left: 28px;
+  color: var(--orange-2);
+  font-weight: 800;
 }
 
 .service-icon {
@@ -795,13 +805,51 @@ h3 {
   color: var(--muted);
 }
 
+.video-section {
+  padding-top: 58px;
+}
+
+.video-panel {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  gap: 28px;
+  align-items: center;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+}
+
+.video-copy p {
+  color: var(--muted);
+}
+
+.video-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--black);
+  aspect-ratio: 16 / 9;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .ebook-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .ebook-card {
   position: relative;
-  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  min-height: 470px;
   padding: 28px;
   overflow: hidden;
 }
@@ -817,10 +865,67 @@ h3 {
 }
 
 .ebook-card a {
-  position: absolute;
-  inset: auto 28px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 42px;
+  margin-top: auto;
+  padding: 10px 16px;
+  border-radius: 999px;
   color: var(--orange);
+  background: rgba(255, 106, 33, 0.1);
   font-weight: 800;
+}
+
+.ebook-cover {
+  position: relative;
+  z-index: 1;
+  height: 178px;
+  margin: 0 0 20px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.ebook-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ebook-card .tag,
+.ebook-card h3,
+.ebook-card p,
+.ebook-card a {
+  position: relative;
+  z-index: 1;
+}
+
+.article-links {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.article-links .post {
+  min-height: 300px;
+  align-items: start;
+}
+
+.article-links .post > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.article-links .read-link {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.scientific-links {
+  margin-bottom: 24px;
 }
 
 .blog {
@@ -846,7 +951,7 @@ h3 {
   box-shadow: 0 24px 64px rgba(7, 7, 7, 0.12);
 }
 
-.post span {
+.post > span {
   color: var(--orange);
   font-size: 2.1rem;
   font-weight: 800;
@@ -854,6 +959,20 @@ h3 {
 
 .post p {
   margin-bottom: 0;
+}
+
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .blog-cta {
@@ -1045,6 +1164,10 @@ h3 {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.72)),
     radial-gradient(circle at top right, rgba(255, 106, 33, 0.22), transparent 34%);
+}
+
+.contact-schedule {
+  margin: 18px 0 24px;
 }
 
 .contact-panel > div > p:not(.eyebrow) {
@@ -1264,7 +1387,9 @@ h3 {
   .principles,
   .work-grid,
   .mentorship-panel,
-  .ebook-grid {
+  .ebook-grid,
+  .article-links,
+  .video-panel {
     grid-template-columns: 1fr;
   }
 
