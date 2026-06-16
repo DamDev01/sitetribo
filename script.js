@@ -4,8 +4,8 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const form = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 
-const contactEmail = "contato@triboneurodiversa.com.br";
-const contactEndpoint = "https://formsubmit.co/ajax/06b59af39c87f35b5120835a3b896e07";
+const contactEmail = "info@triboneurodiversa.com.br";
+const contactEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
 
 function updateHeader() {
   if (!header) return;
@@ -95,7 +95,7 @@ if (form) {
     } catch (error) {
       if (formNote) {
         formNote.textContent =
-          "Nao foi possivel enviar agora. Tente novamente ou escreva para contato@triboneurodiversa.com.br.";
+          `Nao foi possivel enviar agora. Tente novamente ou escreva para ${contactEmail}.`;
       }
     } finally {
       if (submitButton) {
